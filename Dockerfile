@@ -22,3 +22,9 @@ COPY requirements.txt /apps/recsys
 
  # Install any needed packages specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
+
+# Expose port 8555
+EXPOSE 8555
+
+# Command to run the application
+CMD ["python", "app.py"]
