@@ -1,0 +1,25 @@
+version: '3.9'
+networks:
+   recsys:
+     name: recsys
+     external: true
+
+services:
+   recsys_backend:
+     image: recsys_backend
+     container_name: recsys_backend
+     build:
+       context: .
+       dockerfile: Dockerfile
+     restart: always
+     environment:
+       - uid=1000
+       - gid=1000
+#     volumes:
+#       - /Users/deepakkumar/Desktop/MyPersonalProjects/AI/RecommendationSystem:/apps/recsys
+     ports:
+       - 8555:8555
+     networks:
+       - recsys
+#     command: bash -c "tail -f /dev/null"
+     command: bash -c "python app.py"
