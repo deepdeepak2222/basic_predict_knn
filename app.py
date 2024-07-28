@@ -100,4 +100,4 @@ def partial_train():
 
 if __name__ == '__main__':
     # Run webserver using flask
-    app.run(debug=True, port=8555)
+    app.run(host='0.0.0.0', port=8555)
