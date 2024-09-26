@@ -1,7 +1,16 @@
 from flask import Flask, request, jsonify
+from transformers import pipeline
 
-from summarizer import generate_summary
+# Initialize the summarization pipeline
+summarizer = pipeline("summarization")
+
+
 app = Flask(__name__)
+
+
+def generate_summary(book_content):
+    summary = summarizer(book_content, max_length=50, min_length=4, do_sample=False)
+    return summary[0]['summary_text']
 
 
 @app.route('/book/summary', methods=['POST'])
